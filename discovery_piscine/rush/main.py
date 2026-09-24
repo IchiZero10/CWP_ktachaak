@@ -4,7 +4,7 @@ import sys, io
 
 def main():
     board = """\
-    .B
+    .Q
     .K\
     """
     
