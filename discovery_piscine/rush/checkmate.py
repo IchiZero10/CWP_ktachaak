@@ -36,7 +36,7 @@ def checkmate(board: str):
         if arr[i][king_x] in "QR":
             step = 1 if i < king_y else -1
             for j in range(i + step, king_y, step):
-                if arr[j][king_x] != ".":
+                if arr[j][king_x] not in ".K":
                     print("Failed")
                     return
             print("Success")
@@ -44,7 +44,7 @@ def checkmate(board: str):
         elif arr[king_y][i] in "QR":
             step = 1 if i < king_x else -1
             for j in range(i+step,king_x,step):
-                if arr[king_y][j] != ".":
+                if arr[king_y][j] not in ".K":
                     print("Failed")
                     return     
             print("Success")      
@@ -56,7 +56,7 @@ def checkmate(board: str):
             if arr[i][y] in "QB":
                 pointer = [y, i]
                 while pointer[0] != king_x or pointer[1] != king_y:
-                    if arr[pointer[1] + 1][pointer[0] + 1] != ".":
+                    if arr[pointer[1] + 1][pointer[0] + 1] not in ".K":
                         print("Failed")
                         return
                     pointer[0] += 1
@@ -69,7 +69,7 @@ def checkmate(board: str):
             if arr[i][y] in "QB":
                 pointer = [y, i]
                 while pointer[0] != king_x or pointer[1] != king_y:
-                    if arr[pointer[1] - 1][pointer[0] - 1] != ".":
+                    if arr[pointer[1] - 1][pointer[0] - 1] not in ".K":
                         print("Failed")
                         return
                     pointer[0] -= 1
