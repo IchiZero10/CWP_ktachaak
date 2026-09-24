@@ -6,31 +6,29 @@ def checkmate(board: str):
     ]
     board_size = len(arr)
     king_counter = sum(i.count("K") for i in arr)
+
     if any(
         len(row) != board_size for row in arr
     ):
         print("Board is not square")
         return
-    if (
-        not king_counter
-    ):
+
+    if not king_counter:
         print("King not found")
         return
     elif king_counter > 1:
         print("Multiple King Found")
         return
     # find king x y
-    for i, j in enumerate(
-        arr
-    ):
+    
+    for i, j in enumerate(arr):
         finder = j.find("K")
         if finder != -1:
             king_y = i
             king_x = finder
             break
     # case Pawn
-    # X.X
-    # .P.
+
     if (
         king_y + 1 < board_size
         and (
@@ -44,23 +42,25 @@ def checkmate(board: str):
     ):
         print("Success")
         return
-    # horizontal and vertical (Queen and Rook)
-    for i in range(board_size):  # วนเลข 0-ความยาวตาราง
+    # case horizontal and vertical (QR)
+    for i in range(board_size):
         if (
             arr[i][king_x] in "QR" or arr[king_y][i] in "QR"
         ):
             print("Success")
             return
-    # diagonal
+    # case diagonal (QB)
     for i in range(board_size):
-        y = i + king_y - king_x
+        y = i + king_x - king_y
         if 0 <= y < board_size:
             if arr[i][y] in "QB":
                 print("Success")
                 return
-        y = -i + king_y + king_x
+
+        y = -i + king_x + king_y
         if 0 <= y < board_size:
             if arr[i][y] in "QB":
                 print("Success")
                 return
+
     print("Failed")
